@@ -10,7 +10,8 @@ class GramsController < ApplicationController
   def create
     @gram = Gram.new(model_params)
     if @gram.save
-     redirect_to @gram
+      flash[:notice] = 'Gram successfully created'
+      redirect_to @gram
    else
       render :new
    end
