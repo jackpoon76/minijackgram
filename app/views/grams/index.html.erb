@@ -2,7 +2,7 @@
   <div>
     <div><%= link_to(gram.title, gram) %></div>
     <div><%= gram.description %></div>
-    <div><%= gram.location_code %></div>
+    <div><%= country_name(gram.location_code) %></div>
     <div><%= link_to('Delete', gram, method: :delete) %></div>
   </div>
   <hr>
