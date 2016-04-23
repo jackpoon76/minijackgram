@@ -10,14 +10,17 @@ class UsersController < ApplicationController
   def create
     @user = User.new(model_params)
     if @user.save
+      flash[:notice] = 'User succesfully created!'
      redirect_to @user
    else
+      flash.now[:error] = 'Failed to create user!'
       render :new
    end
   end
 
   def show
     @user = User.find(params[:id])
+    @grams = @user.grams.page(params[:page]).per(5)
   end
 
   def destroy
@@ -29,6 +32,6 @@ class UsersController < ApplicationController
   private
 
   def model_params
-    params.require(:user).permit(:name, :email)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 end
